@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+
+input {
+    padding: 10px;
+    width: 300px;
+}
+
+button {
+    padding: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#resultados {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pelicula {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.pelicula img {
+    width: 100%;
+    height: auto;
+}
