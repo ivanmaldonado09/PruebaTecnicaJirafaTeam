@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
 }
 );
 
+app.use(
+    express.static(join(__dirname, 'public'))
+);
+
 app.use(express.json());
 
 app.use('/peliculas', peliculaRuta);
