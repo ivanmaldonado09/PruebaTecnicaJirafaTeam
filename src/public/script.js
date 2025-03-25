@@ -16,7 +16,7 @@ document.getElementById('botonBuscar').addEventListener('click', async () => {
         return;
     }
 
-    peliculas.forEach(pelicula => {
+    peliculas.Search.forEach(pelicula => {
         const peliculaElement = document.createElement('div');
         peliculaElement.classList.add('pelicula');
         peliculaElement.innerHTML = `
