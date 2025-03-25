@@ -6,22 +6,24 @@ document.getElementById('botonBuscar').addEventListener('click', async () => {
     }
 
     const response = await fetch(`/peliculas/buscar?titulo=${textoBuscador}`);
-    const pelicula = await response.json();  
+    const peliculas = await response.json();
 
     const resultadosDiv = document.getElementById('resultados');
-  
-    if (pelicula.error) {
-        resultadosDiv.innerHTML = `<p>${pelicula.error}</p>`;
+    resultadosDiv.innerHTML = ''; 
+    
+    if (peliculas.error) {
+        resultadosDiv.innerHTML = `<p>${peliculas.error}</p>`;
         return;
     }
 
-    const peliculaElement = document.createElement('div');
-    peliculaElement.classList.add('pelicula');
-    peliculaElement.innerHTML = `
-        <img src="${pelicula.Poster}" alt="${pelicula.Title}">
-        <h3>${pelicula.Title}</h3>
-        <p>Año: ${pelicula.Year}</p>
-        <p>${pelicula.Plot}</p>
-    `;
-    resultadosDiv.appendChild(peliculaElement);
+    peliculas.forEach(pelicula => {
+        const peliculaElement = document.createElement('div');
+        peliculaElement.classList.add('pelicula');
+        peliculaElement.innerHTML = `
+            <img src="${pelicula.Poster}" alt="${pelicula.Title}">
+            <h3>${pelicula.Title}</h3>
+            <p>Año: ${pelicula.Year}</p>
+        `;
+        resultadosDiv.appendChild(peliculaElement);
+    });
 });
