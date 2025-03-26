@@ -10,3 +10,14 @@ export const obtenerMeGustaPeliculas = (callback) => {
         }
     });
 };
+
+export const agregarMeGustaPelicula = (id_pelicula, callback) => {
+    conexion.query('INSERT INTO megusta (id_pelicula) VALUES (?)', [id_pelicula], (error) => {
+        if (error) {
+            console.error('Error al agregar película:', error);
+            callback(error);
+        } else {
+            callback(null);
+        }
+    });
+};

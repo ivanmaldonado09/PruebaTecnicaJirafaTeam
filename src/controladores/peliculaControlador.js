@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { obtenerMeGustaPeliculas } from '../modelos/peliculaModelo.js';
+import { agregarMeGustaPelicula } from '../modelos/peliculaModelo.js';
 
 const api_key= '717322b7';
 
@@ -22,6 +23,18 @@ export const obtenerMGPeliculas = (req, res) => {
             return;
         }
         res.json(peliculas);
+    }
+    );
+}
+
+export const agregarMeGusta = (req, res) => {
+    const {id_pelicula} = req.body;
+    agregarMeGustaPelicula(id_pelicula, (error) => {
+        if (error) {
+            res.status(500).json({error: error.message});
+            return;
+        }
+        res.json({mensaje: 'Me gusta agregado'});
     }
     );
 }
