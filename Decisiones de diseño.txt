@@ -1,0 +1,21 @@
+Elegi hacer el proyecto con un patron MVC, ya que seria mas organizado para mi y es a lo que estoy acostumbrado.  
+Mi primera decisión fue pensar como tomaría los datos de la API otorgada. Esta misma da distintos parámetros de búsqueda, decidí usar el del titulo.  
+Configure el backend y la ruta, para primero probar si la api funcionaba y podía obtener las peliculas según el titulo.  
+Aca me choque con un problema y es que yo usaba el termino t de la api, lo cual me traía una sola pelicula, lo cambie por la s el cual me traía varias según la palabra.  
+Una vez que mi backend funcionaba pase al frontend, aca necesite ayuda de videos ya que JavaScript no es mi fuerte, sin embargo, logre hacer el script para que cuando le de al botón buscar  
+esto haga un fetch es decir que espere una promesa con la url de mi api, logrando asi conectrar el front end con el backend.  
+Luego hardcodee 4 títulos para que aparezcan en recomendaciones, les pegue directamente desde el script a la api buscando esos títulos incluyendo el de gladiator.  
+
+Después, segui con la parte de los me gusta, estuve 1 dia entero pensando como resolverlo hasta que me decidí por crear una base de datos en MySQL y ahí almacenar los me gusta.  
+Decidi que mi bdd solo tendría una tabla "megusta" la cual tendría los id de las peliculas que se les da me gusta.  
+
+Configure e hice la conexión en mi código, para luego crear la carpeta modelos donde iba a realizar las consultas a la base de datos.  
+
+Comencé por lo mas fácil que era introducir códigos de peliculas para probar que me estaba los estaba trayendo, cuando logre que funcione todo hice el frontend, para esto   
+modifique mi script haciendo que compare los id de las peliculas que estaba buscando al apretar en el buscador, con las peliculas que me traía de mi base de datos, si coincidían  
+aparecía un botón.  
+ Cuando logre esto, ya solo quedaba hacer las dos consultas que debia, la de agregar a mi base de datos los id, y la de eliminarlos. Esta vez comencé con el frontend ya que tenia claro lo que debia hacer.  
+ Volvi a modificar mi script para que según lo que diga el texto del botón, realice un fetch u otro, uno en el que mando el id a mi base de datos para agregarlo, y otro en el que borro ese id,   
+todo dependiendo de si el botón era para dar me gusta o para quitarlo.  
+Solo me quedo realizar las consultas en el modelo y pegarle desde el controlador, además de obviamente configurar las rutas para estos casos, en el cual no se cambia el nombre de la url "meGusta" ya que segun  
+la convención API REST con el GET obtengo los id de las peliculas, con el DELETE elimino segun el ID a la pelicula de mi tabla de me gusta, y con el POST las agrego, sin modificar la url  
