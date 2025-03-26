@@ -16,3 +16,6 @@ Por lo tanto deberá tener iniciado SQL, saber su host, user, password y databas
 1) Abra la terminal en la carpeta raíz del proyecto  
 2) Instale la siguiente dependencia= npm install mysql  
 3) En el archivo index.js cambie los datos de la base de datos por los suyos  
+4) En caso de antes haber iniciado el servidor, reinicielo, ahora deberan mostrarse por consola 2 mensajes, el primero del servidor funcionando en el puerto elegido y el segundo de la conexion correcta a la base de datos  
+
+Una vez configurado e inicializado el proyecto, vaya a su navegador y dirigase a http://localhost:3000/ (o su puerto elegido en lugar de 3000) y ya podra probar el programa.
