@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { obtenerMeGustaPeliculas } from '../modelos/peliculaModelo.js';
 import { agregarMeGustaPelicula } from '../modelos/peliculaModelo.js';
+import { quitarMeGustaPelicula } from '../modelos/peliculaModelo.js';
 
 const api_key= '717322b7';
 
@@ -37,4 +38,17 @@ export const agregarMeGusta = (req, res) => {
         res.json({mensaje: 'Me gusta agregado'});
     }
     );
+}
+
+export const quitarMeGusta = (req, res) =>{
+    const {id_pelicula} = req.params;
+    quitarMeGustaPelicula(id_pelicula, (error) => {
+        if (error) {
+            res.status(500).json({error: error.message});
+            return;
+        }
+        res.json({mensaje: 'Me gusta quitado'});
+    }
+    );
+
 }

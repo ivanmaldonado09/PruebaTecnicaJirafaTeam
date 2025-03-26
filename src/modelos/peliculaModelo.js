@@ -21,3 +21,14 @@ export const agregarMeGustaPelicula = (id_pelicula, callback) => {
         }
     });
 };
+
+export const quitarMeGustaPelicula = (id_pelicula, callback) => {
+    conexion.query('DELETE FROM megusta WHERE id_pelicula = ?', [id_pelicula], (error) => {
+        if (error) {
+            console.error('Error al quitar película:', error);
+            callback(error);
+        } else {
+            callback(null);
+        }
+    });
+}
