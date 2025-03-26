@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { obtenerMeGustaPeliculas } from '../modelos/peliculaModelo.js';
 
 const api_key= '717322b7';
 
@@ -13,3 +14,14 @@ export const buscarPelicula = async (req, res) => {
         res.status(500).json({error: error.message});
     }
 } 
+
+export const obtenerMGPeliculas = (req, res) => {
+    obtenerMeGustaPeliculas((error, peliculas)=> {
+        if (error) {
+            res.status(500).json({error: error.message});
+            return;
+        }
+        res.json(peliculas);
+    }
+    );
+}
