@@ -37,10 +37,30 @@ document.getElementById('botonBuscar').addEventListener('click', async () => {
                 <img src="${pelicula.Poster}" alt="${pelicula.Title}">
                 <h3>${pelicula.Title}</h3>
                 <p>Año: ${pelicula.Year}</p>
-                ${leGusta ? `<button class="botonQuitarMeGusta">Te gusta ❤️</button>` : '<button class="botonDarMeGusta">Agregar a me gusta</button>'}
-            `;
+               <button class="botonMeGusta" idPeli="${idPelicula}">
+                    ${leGusta ? 'Te gusta ❤️' : 'Agregar a me gusta'}
+                </button>`;
             resultadosDiv.appendChild(peliculaElement);
         });
+        document.querySelectorAll('.botonMeGusta').forEach(boton => {
+            boton.addEventListener('click', async (e) => {
+                const idPelicula = e.target.getAttribute('idPeli');
+                const leGusta = e.target.innerText.includes('Te gusta');
+
+                if (leGusta) {
+                    await fetch(`/peliculas/meGusta/${idPelicula}`, { method: 'DELETE' });
+                    e.target.innerText = 'Agregar a me gusta';
+                } else {
+                    await fetch(`/peliculas/meGusta`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id_pelicula: idPelicula })
+                    });
+                    e.target.innerText = 'Te gusta ❤️';
+                }
+            });
+        });
+
     } catch (error) {
         console.error('Error al buscar películas:', error);
     }
