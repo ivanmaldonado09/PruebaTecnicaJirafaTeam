@@ -34,3 +34,12 @@ button {
     width: 100%;
     height: auto;
 }
+
+.botonMeGusta {
+    background-color: #adb6ae;
+    color: white;
+    border: #adb6ae;
+    border-radius: 3px;
+    text-align: center;
+   
+}

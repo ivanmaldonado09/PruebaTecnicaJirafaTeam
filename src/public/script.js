@@ -37,8 +37,8 @@ document.getElementById('botonBuscar').addEventListener('click', async () => {
                 <img src="${pelicula.Poster}" alt="${pelicula.Title}">
                 <h3>${pelicula.Title}</h3>
                 <p>Año: ${pelicula.Year}</p>
-               <button class="botonMeGusta" idPeli="${idPelicula}">
-                    ${leGusta ? 'Te gusta ❤️' : 'Agregar a me gusta'}
+               <button class="botonMeGusta " idPeli="${idPelicula}">
+                    ${leGusta ? '❤️ Te gusta ❤️' : 'Agregar a me gusta'}
                 </button>`;
             resultadosDiv.appendChild(peliculaElement);
         });
@@ -56,7 +56,7 @@ document.getElementById('botonBuscar').addEventListener('click', async () => {
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ id_pelicula: idPelicula })
                     });
-                    e.target.innerText = 'Te gusta ❤️';
+                    e.target.innerText = '❤️ Te gusta ❤️';
                 }
             });
         });
