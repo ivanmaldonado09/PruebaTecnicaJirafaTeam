@@ -5,31 +5,47 @@ document.getElementById('botonBuscar').addEventListener('click', async () => {
         return;
     }
 
-    const response = await fetch(`/peliculas/buscar?titulo=${textoBuscador}`);
-    const peliculas = await response.json();
+    try {
+        const response = await fetch(`/peliculas/buscar?titulo=${textoBuscador}`);
+        const peliculas = await response.json();
 
-    const resultadosDiv = document.getElementById('resultados');
-    resultadosDiv.innerHTML = ''; 
-    
-    if (peliculas.error) {
-        resultadosDiv.innerHTML = `<p>${peliculas.error}</p>`;
-        return;
+        const responseDB = await fetch('/peliculas/meGusta'); 
+         const peliculasDB = await responseDB.json();
+
+        const idsEnBaseDeDatos = [];
+        for (let i = 0; i < peliculasDB.length; i++) {
+        idsEnBaseDeDatos.push(peliculasDB[i].id_pelicula);
+        }
+
+        const resultadosDiv = document.getElementById('resultados');
+        resultadosDiv.innerHTML = ''; 
+        
+        if (peliculas.error) {
+            resultadosDiv.innerHTML = `<p>${peliculas.error}</p>`;
+            return;
+        }
+
+        
+        peliculas.Search.forEach(pelicula => {
+            const peliculaElement = document.createElement('div');
+            peliculaElement.classList.add('pelicula');
+
+            const idPelicula = pelicula.imdbID; 
+            const leGusta = idsEnBaseDeDatos.includes(idPelicula);
+
+            peliculaElement.innerHTML = `
+                <img src="${pelicula.Poster}" alt="${pelicula.Title}">
+                <h3>${pelicula.Title}</h3>
+                <p>Año: ${pelicula.Year}</p>
+                ${leGusta ? `<button class="botonQuitarMeGusta">Te gusta ❤️</button>` : '<button class="botonDarMeGusta">Agregar a me gusta</button>'}
+            `;
+            resultadosDiv.appendChild(peliculaElement);
+        });
+    } catch (error) {
+        console.error('Error al buscar películas:', error);
     }
-
-    peliculas.Search.forEach(pelicula => {
-        const peliculaElement = document.createElement('div');
-        peliculaElement.classList.add('pelicula');
-        peliculaElement.innerHTML = `
-            <img src="${pelicula.Poster}" alt="${pelicula.Title}">
-            <h3>${pelicula.Title}</h3>
-            <p>Año: ${pelicula.Year}</p>
-           
-
-            <button id="botonMeGusta" class="botonMeGusta" onclick="alert('Me gusta')">Me gusta</button>
-        `;
-        resultadosDiv.appendChild(peliculaElement);
-    });
 });
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
