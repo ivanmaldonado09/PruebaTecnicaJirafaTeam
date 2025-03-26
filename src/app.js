@@ -1,4 +1,5 @@
 import express from 'express';
+import conexion from '../db.js';
 import peliculaRuta from './rutas/peliculaRuta.js';
 import {join, dirname} from 'path';
 import { fileURLToPath } from 'url';

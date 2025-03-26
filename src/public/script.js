@@ -23,6 +23,9 @@ document.getElementById('botonBuscar').addEventListener('click', async () => {
             <img src="${pelicula.Poster}" alt="${pelicula.Title}">
             <h3>${pelicula.Title}</h3>
             <p>Año: ${pelicula.Year}</p>
+           
+
+            <button id="botonMeGusta" class="botonMeGusta" onclick="alert('Me gusta')">Me gusta</button>
         `;
         resultadosDiv.appendChild(peliculaElement);
     });
