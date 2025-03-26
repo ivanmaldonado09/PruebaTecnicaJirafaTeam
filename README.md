@@ -7,9 +7,12 @@ Configuración servidor
 5) Para correr el servidor, en la misma terminal escribir node index.js  
 6) El servidor estará funcionando en el puerto 3000 (puede cambiarse en el index.js)  
 
-Listo, al ir al localhost y el puerto elegido, se abrirá automáticamente el index
+Listo, al ir al localhost y el puerto elegido, se abrirá automáticamente el index  
 
-Configuración de la base de datos (para los me gusta de las peliculas)
+Configuración de la base de datos (para los me gusta de las peliculas).
+La base de datos decidí hacerla con SQL, en mi caso uso XAMPP para iniciar mi servicio y utilizo phpmyAdmin como mi interfaz grafica.
+Por lo tanto deberá tener iniciado SQL, saber su host, user, password y database (esta misma esta en el repositorio de git para que solo tenga que importar el .sql y asi tener ya la base de datos con la tabla)  
 
-
-
+1) Abra la terminal en la carpeta raíz del proyecto  
+2) Instale la siguiente dependencia= npm install mysql  
+3) En el archivo index.js cambie los datos de la base de datos por los suyos  
